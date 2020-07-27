@@ -20,13 +20,9 @@ export default function PlaybackBar(props) {
     return (
         <div className="playback-controls-container">
             <div className="playback-controls-buttons">
-                <MdShuffle className="control-button" />
-                <MdKeyboardArrowLeft className="control-button" />
                 {isPlaying
                     ? <MdPause className="control-button pause-button" onClick={() => pause()} />
                     : <MdPlayArrow className="control-button play-button" onClick={() => play()} />}
-                <MdKeyboardArrowRight className="control-button" />
-                <MdRepeat className="control-button" />
             </div>
             <div className="time-seeker-wrapper">
                 <span className="time">{parseDisplayTime(currentTime)}</span>
