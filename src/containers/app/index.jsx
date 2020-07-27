@@ -1,67 +1,90 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavBar from 'components/nav-bar';
 import PlaybackBar from 'components/playback-bar';
 import SongTile from 'components/song-tile';
 import './_app.scss';
+import { useAudio } from 'hooks'
 
 function App() {
 
-  let mockData = [
+  let mockSongList = [
     {
       id: "1",
       artist: "Lawrence 1",
       title: "Jazzy Piano",
       mediaUrl: "https://www.bensound.com/bensound-music/bensound-thejazzpiano.mp3",
-      artUrl: "https://www.bensound.com/bensound-img/thejazzpiano.jpg"
+      imgUrl: "https://www.bensound.com/bensound-img/thejazzpiano.jpg"
     },
     {
       id: "2",
       artist: "Lawrence 2",
       title: "The Elevator Bossa Nova",
       mediaUrl: "https://www.bensound.com/bensound-music/bensound-theelevatorbossanova.mp3",
-      artUrl: "https://www.bensound.com/bensound-img/theelevatorbossanova.jpg"
+      imgUrl: "https://www.bensound.com/bensound-img/theelevatorbossanova.jpg"
     },
     {
-      id: "2",
+      id: "3",
       artist: "Lawrence 2",
       title: "The Elevator Bossa Nova",
       mediaUrl: "https://www.bensound.com/bensound-music/bensound-theelevatorbossanova.mp3",
-      artUrl: "https://www.bensound.com/bensound-img/theelevatorbossanova.jpg"
+      imgUrl: "https://www.bensound.com/bensound-img/theelevatorbossanova.jpg"
     },
     {
-      id: "2",
+      id: "4",
       artist: "Lawrence 2",
       title: "The Elevator Bossa Nova",
       mediaUrl: "https://www.bensound.com/bensound-music/bensound-theelevatorbossanova.mp3",
-      artUrl: "https://www.bensound.com/bensound-img/theelevatorbossanova.jpg"
+      imgUrl: "https://www.bensound.com/bensound-img/theelevatorbossanova.jpg"
     },
     {
-      id: "2",
+      id: "5",
       artist: "Lawrence 2",
       title: "The Elevator Bossa Nova",
       mediaUrl: "https://www.bensound.com/bensound-music/bensound-theelevatorbossanova.mp3",
-      artUrl: "https://www.bensound.com/bensound-img/theelevatorbossanova.jpg"
+      imgUrl: "https://www.bensound.com/bensound-img/theelevatorbossanova.jpg"
     },
     {
-      id: "2",
+      id: "6",
       artist: "Lawrence 2",
       title: "The Elevator Bossa Nova",
       mediaUrl: "https://www.bensound.com/bensound-music/bensound-theelevatorbossanova.mp3",
-      artUrl: "https://www.bensound.com/bensound-img/theelevatorbossanova.jpg"
+      imgUrl: "https://www.bensound.com/bensound-img/theelevatorbossanova.jpg"
     },
   ]
 
+  const [currentSong, setCurrentSong] = useState({})
+  const [audioElement, audioState, audioControls] = useAudio({ src: currentSong ? currentSong.mediaUrl : null });
+  console.log({ currentSong })
   return (
     <div className="app-container">
       <NavBar />
       <div className="song-list-container">
-        {mockData.map(song => {
+        {mockSongList.map((song) => {
           return (
-            <SongTile url={song.artUrl} title={song.title} artist={song.artist} />
+            <SongTile
+              imgUrl={song.imgUrl}
+              title={song.title}
+              artist={song.artist}
+              onClick={() => {
+                setCurrentSong(song)
+              }}
+              key={`song-tile-${song.id}`}
+            />
           )
         })}
       </div>
-      <PlaybackBar />
+      <PlaybackBar
+        play={audioControls.play}
+        pause={audioControls.pause}
+        seek={audioControls.seek}
+        setVolume={audioControls.setVolume}
+        currentSong={currentSong}
+        isPlaying={audioState.isPlaying}
+        volume={audioState.volume}
+        currentTime={audioState.currentTime}
+        totalTime={audioState.totalTime}
+      />
+      {audioElement}
     </div>
   );
 }
