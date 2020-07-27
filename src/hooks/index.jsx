@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+/* Loads audio and provides controls and audio state */
 const useAudio = ({ src, onEnded }) => {
     const [currentTime, setCurrentTime] = useState(0);
     const [totalTime, setTotalTime] = useState(0);
@@ -67,4 +68,26 @@ const useAudio = ({ src, onEnded }) => {
     return [audioElement, audioState, audioControls];
 };
 
-export { useAudio };
+/* Fetches songs and manages whats being played. */
+const useSongManager = (url) => {
+    const [songList, setSongList] = useState([]);
+    const [songId, setSongId] = useState(null);
+
+    useEffect(() => {
+        const fetchSongList = async () => {
+            const songsResponse = await fetch(url);
+            const songsJson = await songsResponse.json();
+
+            // Save previous list of songs with new list if url changes.
+            // TODO: Remove potential duplicates.
+            setSongList([...songList, ...songsJson.songs])
+        }
+        fetchSongList();
+    }, [url]);
+
+    const currentSong = songList.find((song) => song.id === songId);
+
+    return [songList, currentSong, setSongId];
+}
+
+export { useAudio, useSongManager };
