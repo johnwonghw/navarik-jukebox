@@ -1,10 +1,12 @@
 import React from 'react';
 import './_song-tile.scss';
+import { MdAddCircle } from 'react-icons/md';
 
-export default function SongTile({url, title, artist}) {
+export default function SongTile({ url, title, artist }) {
     return (
         <div className="song-tile-container">
-            <div className="square"><img className="song-image" src={url} /></div>
+            <MdAddCircle className="add-queue-button" />
+            <img className="song-image" src={url} />
             <div className="song-info">
                 <div className="title">{title}</div>
                 <div className="artist">{artist}</div>

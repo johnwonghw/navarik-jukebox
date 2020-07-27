@@ -1,4 +1,53 @@
 .playback-bar-container {
-    height: 50px;
-    border: 1px solid blue;
+    height: 80px;
+    background: white;
+    border: 1px solid #e4e4e4;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    .song-info {
+        display: flex;
+        align-items: center;
+        width: 220px;
+        .album-image {
+            height: 60px;
+            width: 60px;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+        .song-text {
+            overflow: hidden;
+        }
+    }
+
+    .playback-controls-container {
+        flex: 1;
+        text-align: center; 
+        .playback-controls-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .control-button {
+                font-size: 25px;
+                padding: 0 5px;
+                cursor: pointer;
+                &.play-button, &.pause-button {
+                    font-size: 40px;
+                }
+                &:hover, &.active {
+                    color: blue;
+                }
+            }
+        }
+        .time-seeker-wrapper {
+            display: flex;
+            .time {
+                padding: 0 5px;
+            }
+            .time-seeker {
+                flex: 1;
+            }
+        }   
+    }
 }
