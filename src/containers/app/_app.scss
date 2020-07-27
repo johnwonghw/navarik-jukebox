@@ -1,0 +1,12 @@
+.app-container {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    .song-list-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        overflow: auto;
+        background: #efefef;
+    }
+  }
