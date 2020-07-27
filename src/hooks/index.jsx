@@ -63,7 +63,7 @@ const useAudio = ({ src, onEnded }) => {
         if (src) {
             audioControls.play();
         }
-    }, [src, audioControls]);
+    }, [src]);
 
     return [audioElement, audioState, audioControls];
 };
