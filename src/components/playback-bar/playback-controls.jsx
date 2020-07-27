@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdPlayArrow, MdPause, MdShuffle, MdRepeat, MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+import { MdPlayArrow, MdPause } from 'react-icons/md';
 
 export default function PlaybackBar(props) {
     const {

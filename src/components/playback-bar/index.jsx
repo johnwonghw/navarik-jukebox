@@ -21,7 +21,7 @@ export default function PlaybackBar(props) {
     return (
         <div className="playback-bar-container">
             <div className="song-info">
-                {currentSong.imgUrl ? <img className="album-image" src={currentSong.imgUrl} /> : <div className="album-image blank" />}
+                {currentSong.imgUrl ? <img className="album-image" src={currentSong.imgUrl} alt={`Song art for ${currentSong.artist} - ${currentSong.title}`} /> : <div className="album-image blank" />}
                 <div className="song-text">
                     <div className="title">{currentSong.title}</div>
                     <div className="artist">{currentSong.artist}</div>

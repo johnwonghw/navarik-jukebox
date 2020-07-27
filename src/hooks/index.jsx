@@ -63,7 +63,7 @@ const useAudio = ({ src, onEnded }) => {
         if (src) {
             audioControls.play();
         }
-    }, [src]);
+    }, [src, audioControls]);
 
     return [audioElement, audioState, audioControls];
 };
@@ -80,7 +80,7 @@ const useSongManager = (url) => {
 
             // Save previous list of songs with new list if url changes.
             // TODO: Remove potential duplicates.
-            setSongList([...songList, ...songsJson.songs])
+            setSongList((prevSongList) => [...prevSongList, ...songsJson.songs]);
         }
         fetchSongList();
     }, [url]);
